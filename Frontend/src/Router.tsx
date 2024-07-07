@@ -10,10 +10,12 @@ import NotFound from './assets/pages/NotFound'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
+        <>
         <Route path="/" element={<Root />}>
             <Route path="dashboard" element={<Root />} />
-            <Route path="*" element={<NotFound />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
+        </>
     )
 );
 

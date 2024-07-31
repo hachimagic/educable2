@@ -6,9 +6,6 @@ export default {
   ],
   theme: {
     extend: {},
-    fontFamily: {
-      default: ['LINESeedSansTH']
-    }
   },
   plugins: [],
 }

@@ -1,22 +1,10 @@
 {
     "exercise-1":{
-        "ai": false,
-        "type": "truefalse",
-        "question":"Given 2x+3=11, is x equal to 12",
-        "answer":false,
-        "solution":""
+        "name":"exercise 1",
+        "description":"nfejlfnk"
     },
     "exercise-2":{
-        "ai": false,
-        "type": "choice",
-        "question":"Find x in 2x+3=11",
-        "choices":{
-            "1":"4",
-            "2":"2",
-            "3":"7",
-            "4":"-1"
-        },
-        "answer":"1",
-        "solution":" hello this is a placeholder, if you are seeing this, its wip or i forgot"
+        "name":"exercise 2",
+        "description":"addad"
     }
 }

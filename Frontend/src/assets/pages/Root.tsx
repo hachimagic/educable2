@@ -21,9 +21,9 @@ function App() {
         <button className='p-2 transition ease-in-out border border-slate-400 shadow-xl 
             rounded-xl hover:border-transparent hover:text-gray-50 hover:scale-105 hover:bg-indigo-500 
             active:bg-green-600 active:scale-90 duration-300'
-            onClick={()=>setCount(cnt=>cnt+=1)}
+          onClick={() => setCount(cnt => cnt += 1)}
         >
-            Click me!
+          Click me!
         </button>
         <p className='text-2xl font-bold'>Numbers {count}</p>
       </div>

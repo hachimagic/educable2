@@ -5,23 +5,23 @@ import {
     RouterProvider,
 } from "react-router-dom";
 
-import Root from './assets/pages/Root'
-import NotFound from './assets/pages/NotFound'
+import Root from './assets/pages/Root';
+import NotFound from './assets/pages/NotFound';
+import Quiz from "./assets/pages/Quiz";
+import DashBoard from "./assets/pages/Dashboard";
 
-const router = createBrowserRouter(
-    createRoutesFromElements(
-        <>
-        <Route path="/" element={<Root />}>
-            <Route path="dashboard" element={<Root />} />
-        </Route>
-        <Route path="*" element={<NotFound />} />
-        </>
-    )
-);
+const router = createBrowserRouter([
+
+    { path: "/", element: <Root /> },
+    { path: "/dashboard", element: <DashBoard /> },
+    { path: "quiz", element: <Quiz /> },
+    { path: "/*", element: <NotFound /> }
+
+]);
 
 function App() {
     return (
-        <RouterProvider router={router}/>
+        <RouterProvider router={router} />
     )
 }
 

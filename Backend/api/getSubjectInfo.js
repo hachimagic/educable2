@@ -10,7 +10,7 @@ export default async (req, res) => {
 
 
     try { await fs.promises.access(path + "/entry.json", fs.constants.R_OK) } catch {
-        return "Error, Cannot Entry File"
+        return "Error, Cannot Find Entry File"
     }
 
     let currentEntryObject

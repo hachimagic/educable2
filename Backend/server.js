@@ -2,7 +2,7 @@ import express from 'express'
 //import api here
 import template from './api/template.js'
 import getListSubject from './api/getListSubject.js'
-import getSubjectInformation from './api/getSubjectInformation.js'
+import getSubjectInformation from './api/getSubjectInfo.js'
 import getListSyllabus from './api/getListSyllabus.js'
 import getSyllabusInfo from './api/getSyllabusInfo.js'
 

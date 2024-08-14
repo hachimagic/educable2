@@ -14,3 +14,13 @@ clone the repo down
 - `npm install`
 - `npm run dev`
 
+
+### Backend
+
+- (npm) 
+- `cd Backend`
+- `npm install`
+- `npm run dev`
+or
+- `npm run pdev` for multiprocessed server development
+

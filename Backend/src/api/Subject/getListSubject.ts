@@ -9,8 +9,6 @@ export default async (req:any, res:any):Promise<string> => {
         return "Error, Serverside DB missing"
     }
 
-
-
     let output:string
     try {
         output = JSON.stringify(await file.listDirectory(path))

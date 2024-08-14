@@ -3,6 +3,7 @@ import cluster from "cluster";
 import server from './server.ts'
 const numProcess = 4;
 
+console.log('multiprocess starting')
 
 
 var _previous_console_log = console.log;

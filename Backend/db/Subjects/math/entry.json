@@ -1,7 +1,4 @@
 {
-    "algebra":{
-        "name":"Algebra 1",
-        "description":"algebra",
-        "chapters":1
-    }
+    "name":"Mathematics",
+    "description":"math."
 }

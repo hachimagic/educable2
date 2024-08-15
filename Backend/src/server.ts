@@ -5,6 +5,8 @@ import getListSubject from './api/Subject/getListSubject.ts'
 import getSubjectInfo from './api/Subject/getSubjectInfo.ts'
 import getListSyllabus from './api/Syllabus/getListSyllabus.ts'
 import getSyllabusInfo from './api/Syllabus/getSyllabusInfo.ts'
+import getQuizList from './api/Quiz/getQuizList.ts'
+import getQuizObject from './api/Quiz/getQuizObject.ts'
 
 const server = () => {
 
@@ -13,12 +15,17 @@ const server = () => {
     app.use(express.json()) // for parsing application/json
 
     //Backend APIS
-    //register API here
+    //register API hereget
     getApiRegister('/api/template', template)
     getApiRegister('/api/getListSubject', getListSubject) 
     getApiRegister('/api/getSubjectInfo', getSubjectInfo)
+
     getApiRegister('/api/getListSyllabus', getListSyllabus)
     getApiRegister('/api/getSyllabusInfo', getSyllabusInfo)
+
+    getApiRegister('/api/getListQuiz', getQuizList)
+    getApiRegister('/api/getQuizContent', getQuizObject)
+
     getApiRegister('/', async (req:any, res:any) => {
         return 'Hello World!'
     })

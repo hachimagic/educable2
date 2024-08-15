@@ -1,17 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CourseSearch from './CourseSearch';
 import CourseCategory from './CourseCategory';
 import CourseCard from '../../components/CourseCard';
 import SubjectList from '../../components/SubjectList';
 
+
+
+
 function Dashboard() {
-    const subjects = [
+
+    useEffect(() => {
+        async function RequestData() {
+            let fetchedSubject:string[] = await(await fetch("/api/getListSubject")).json()
+
+            let fetchedSyllabusList:string[][] = await Promise.all(fetchedSubject.map(async (subj:string): Promise<string[]> => {
+                return await(await fetch("/api/getListSyllabus?subject="+subj)).json()
+            }))
+
+            let formattedSubject = fetchedSubject.map((subj,index) => {return {name: subj,subsubjects: fetchedSyllabusList[index]}})
+
+            setSubject(formattedSubject)
+        }
+        RequestData();
+    }, []);
+
+    const [subjects, setSubject] = useState([
         { name: 'Science', subsubjects: ['Physics', 'Biology', 'Chemistry'] },
         { name: 'Mathematics', subsubjects: ['Physics', 'Biology', 'Chemistry'] },
         { name: 'English', subsubjects: ['Physics', 'Biology', 'Chemistry'] },
-    ];
+    ]);
 
-    const courses = [
+    const [courses, setCourses] = useState([
         { name: 'Selected Course Name', details: 'Selected Course Details', subject: 'Subject Name', contributor: ['Contributor\'s Name'] },
         { name: 'Selected Course Name', details: 'Selected Course Details', subject: 'Subject Name', contributor: ['Contributor\'s Name'] },
         { name: 'Selected Course Name', details: 'Selected Course Details', subject: 'Subject Name', contributor: ['Contributor\'s Name'] },
@@ -20,7 +39,7 @@ function Dashboard() {
         { name: 'Selected Course Name', details: 'Selected Course Details', subject: 'Subject Name', contributor: ['Contributor\'s Name'] },
         { name: 'Selected Course Name', details: 'Selected Course Details', subject: 'Subject Name', contributor: ['Contributor\'s Name'] },
         { name: 'Selected Course Name', details: 'Selected Course Details', subject: 'Subject Name', contributor: ['Contributor\'s Name'] },
-    ];
+    ]);
 
     return (
         <main className="flex flex-col items-center px-20 pt-10 bg-white max-md:px-5 overflow-y-scroll md:overflow-y-hidden">

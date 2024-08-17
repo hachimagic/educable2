@@ -1,10 +1,10 @@
-import Router from "./Router"
+import RouterComponent from './Router'
 
 function App() {
   //dont assign this with anything but router it breaks the web
   return (
-    <div>
-      <Router/>
+    <div className='h-screen w-full flex justify-center '>
+      <RouterComponent />
     </div>
   )
 }

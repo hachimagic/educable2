@@ -1,11 +1,18 @@
-import { ReactNode } from "react";
+import { useState } from "react";
 
 type Props = {
     question: string,
     choice: string[],
+    choiceindex: string[],
+    callback: Function,
 }
 
-function Card({ question, choice }: Props) {
+function Card({ question, choice, choiceindex, callback }: Props) {
+    const [answer,setAnswer] = useState("")
+    const handleChange = (e:any) => {
+        const { value } = e.target;
+        setAnswer(value)
+      };
     return (
         <div>
             <div className="bg-white rounded-3xl shadow-black w-full h-[75vh] flex flex-col justify-between">
@@ -18,7 +25,7 @@ function Card({ question, choice }: Props) {
                                 for (let index = 0; index < choice.length; index++) {
                                     const currentChoice = choice[index];
                                     arr.push(<div className="flex items-center my-6">
-                                        <input id="radio-"{...[index.toString()]} type="radio" value="" name="default-radio" className="w-4 h-4 bg-gray-100 border-gray-300">
+                                        <input id="radio-"{...[index.toString()]} type="radio" value={choiceindex[index]} name="radio" className="w-4 h-4 bg-gray-100 border-gray-300" onChange={handleChange}>
                                         </input>
                                         <label
                                             htmlFor="default-radio-1" className="ms-2 text-sm font-medium ">{currentChoice}</label>
@@ -29,7 +36,7 @@ function Card({ question, choice }: Props) {
                         }
 
 
-                        //please do components
+                        
                         <div className="flex items-center">
                         </div>
                     </div>
@@ -45,7 +52,8 @@ function Card({ question, choice }: Props) {
                             <button className="bg-gradient-to-br from-[#78CBFF] to-[#1A9CFF] rounded-xl hover:bg-[#1A9CFF] hover:bg-none">
                                 <p className="px-3 py-1 m-auto">Parallelize</p>
                             </button>
-                            <button className="bg-gradient-to-br from-[#78CBFF] to-[#1A9CFF] rounded-xl hover:bg-[#1A9CFF] hover:bg-none">
+                            <button className="bg-gradient-to-br from-[#78CBFF] to-[#1A9CFF] rounded-xl hover:bg-[#1A9CFF] hover:bg-none"
+                                onClick={()=>callback(answer)}>
                                 <p className="px-3 m-auto">Submit</p>
                             </button>
                         </div>

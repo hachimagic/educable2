@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Card from "../../components/Card"
-
 function Quiz() {
   const [searchParams, setSearchParams] = useSearchParams();
   useEffect(() => {
@@ -18,8 +17,24 @@ function Quiz() {
         let quizName:string = fetchedQuiz.name
         let quizDescription:string = fetchedQuiz.description
 
+        let quizid = 2
+        let chosenQuiz = fetchedQuiz.quiz[quizid]
+
+        let quizChoice:{[key:string]:string} = chosenQuiz.choices
+
+        let quizQuestion:string = chosenQuiz.question
+
+        let quizAnswer:string = chosenQuiz.answer
+        
+        console.log(fetchedQuiz)
+        console.log(quizChoice)
+
         setTitle(quizName)
         setDescription(quizDescription)
+        setChoice(Object.values(quizChoice))
+        setChoiceindex(Object.keys(quizChoice))
+        setQuestion(quizQuestion)
+        setAnswer(quizAnswer)
       } catch {
         return
       }
@@ -28,7 +43,19 @@ function Quiz() {
   }, []);
   const [title,setTitle] = useState("")
   const [description,setDescription] = useState("")
+  const [choice, setChoice] = useState([""])
+  const [choiceindex, setChoiceindex] = useState([""])
+  const [question, setQuestion] = useState("")
+  const [answer, setAnswer] = useState("")
 
+  function onSubmit(submittedanswer:any){
+    if(answer == submittedanswer){
+      alert("correct")
+    }else{
+      alert("wrong")
+    }
+    
+  }
 
   return (
     <div className="flex flex-col mx-20 my-4 font-default">
@@ -57,7 +84,7 @@ function Quiz() {
         <h2 className="text-2xl text-[#8A8A8A]">{description}</h2>
       </div>
       <div className="mt-3">
-        <Card choice={["1","2"]} question='Test1'/>
+        <Card choice={choice} choiceindex={choiceindex} question={question} callback={onSubmit}/>
       </div>
     </div>
   )

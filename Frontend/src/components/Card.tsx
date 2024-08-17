@@ -27,7 +27,7 @@ function Card() {
                             <input id="default-radio-4" type="radio" value="" name="default-radio" className="w-4 h-4  bg-gray-100 border-gray-300">
                             </input>
                             <label
-                                htmlFor="default-radio-4" className="ms-2 text-sm font-medium ">4</label>
+                                htmlFor="default-radio-4" className="ms-2 text-sm font-medium ">4.</label>
                         </div>
                         <div className="flex items-center">
                         </div>

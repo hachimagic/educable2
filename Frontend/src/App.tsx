@@ -1,10 +1,10 @@
-import RouterComponent from './Router'
+import Quiz from "./assets/pages/Quiz"
 
 function App() {
 
   return (
-    <div className='h-screen w-full flex justify-center '>
-      <RouterComponent />
+    <div>
+      <Quiz></Quiz>
     </div>
   )
 }

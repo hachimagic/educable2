@@ -8,23 +8,41 @@ function Quiz() {
     
     
     async function RequestData() {
-      let subject = searchParams.get("subject") ?? "math"
-      let syllabus = searchParams.get("syllabus") ?? "algebra"
-      let id = searchParams.get("id") ?? "exercise_2"
-      setSearchParams({subject: subject,syllabus:syllabus,id:id})
-      let fetchedQuiz: any = await (await fetch(`/api/getQuizContent?subject=${subject}&syllabus=${syllabus}&id=${id}`)).json()
+      try{
+        let subject = searchParams.get("subject") ?? "math"
+        let syllabus = searchParams.get("syllabus") ?? "algebra"
+        let id = searchParams.get("id") ?? "exercise_1"
+        setSearchParams({subject: subject,syllabus:syllabus,id:id})
+        let fetchedQuiz: any = await (await fetch(`/api/getQuizContent?subject=${subject}&syllabus=${syllabus}&id=${id}`)).json()
 
-      let quizName:string = fetchedQuiz.name
-      let quizDescription:string = fetchedQuiz.description
+        let quizName:string = fetchedQuiz.name
+        let quizDescription:string = fetchedQuiz.description
 
-      setTitle(quizName)
-      setDescription(quizDescription)
+        setTitle(quizName)
+        setDescription(quizDescription)
+      } catch {
+        setStatus(2)
+        return
+      }
+      setStatus(1)
     }
     RequestData();
   }, []);
   const [title,setTitle] = useState("")
   const [description,setDescription] = useState("")
+  const [status,setStatus] = useState(0)
 
+  function quizRenderer() {
+    if(status == 0){
+      return (<div> Fetching Data.... </div>)
+    }
+
+    if(status == 2){
+      return (<div> Error Fetching Data</div>)
+    }
+
+    return (<div> Render </div>)
+  }
 
   return (
     <div className="flex flex-col mx-20 my-4 font-default">
@@ -53,7 +71,9 @@ function Quiz() {
         <h2 className="text-2xl text-[#8A8A8A]">{description}</h2>
       </div>
       <div className="mt-3">
-        <Card />
+        <Card>
+          insert code
+        </Card>
       </div>
     </div>
   )

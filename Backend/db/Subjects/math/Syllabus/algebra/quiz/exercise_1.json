@@ -1,10 +1,11 @@
 {
-    "Shuffle":true,
+    "shuffle":true,
     "name": "exercise 1",
     "description": "nfejlfnk",
-    "weight": 0.5,
-    "Choices": [
+    "totalScore": 0.5,
+    "quiz": [
         {
+            "weight": 0.5,
             "ai": false,
             "type": "choice",
             "question": "Find x in 2x+3=11",

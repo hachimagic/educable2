@@ -7,6 +7,8 @@ import getListSyllabus from './api/Syllabus/getListSyllabus.ts'
 import getSyllabusInfo from './api/Syllabus/getSyllabusInfo.ts'
 import getQuizList from './api/Quiz/getQuizList.ts'
 import getQuizObject from './api/Quiz/getQuizObject.ts'
+import getCourseList from './api/Courses/getCourseList.ts'
+import getCourseInfo from './api/Courses/getCourseInfo.ts'
 
 const server = () => {
 
@@ -25,6 +27,9 @@ const server = () => {
 
     getApiRegister('/api/getListQuiz', getQuizList)
     getApiRegister('/api/getQuizContent', getQuizObject)
+
+    getApiRegister('/api/getCourseList', getCourseList)
+    getApiRegister('/api/getCourseInfo', getCourseInfo)
 
     getApiRegister('/', async (req:any, res:any) => {
         return 'Hello World!'

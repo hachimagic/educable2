@@ -12,10 +12,10 @@ import DashBoard from "./assets/pages/Dashboard";
 
 const router = createBrowserRouter([
 
-    /*{ path: "/", element: <Root /> },*/
-    { path: "/", element: <Quiz /> },
+    { path: "/", element: <Root /> },
+    /*{ path: "/", element: <Quiz /> },*/
     { path: "/dashboard", element: <DashBoard /> },
-    /*{ path: "quiz", element: <Quiz /> },*/
+    { path: "quiz", element: <Quiz /> },
     { path: "/*", element: <NotFound /> }
 
 ]);

@@ -21,28 +21,14 @@ function Quiz() {
         setTitle(quizName)
         setDescription(quizDescription)
       } catch {
-        setStatus(2)
         return
       }
-      setStatus(1)
     }
     RequestData();
   }, []);
   const [title,setTitle] = useState("")
   const [description,setDescription] = useState("")
-  const [status,setStatus] = useState(0)
 
-  function quizRenderer() {
-    if(status == 0){
-      return (<div> Fetching Data.... </div>)
-    }
-
-    if(status == 2){
-      return (<div> Error Fetching Data</div>)
-    }
-
-    return (<div> Render </div>)
-  }
 
   return (
     <div className="flex flex-col mx-20 my-4 font-default">
@@ -71,9 +57,7 @@ function Quiz() {
         <h2 className="text-2xl text-[#8A8A8A]">{description}</h2>
       </div>
       <div className="mt-3">
-        <Card>
-          insert code
-        </Card>
+        <Card choice={["1","2"]} question='Test1'/>
       </div>
     </div>
   )

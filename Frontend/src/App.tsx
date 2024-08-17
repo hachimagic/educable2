@@ -1,10 +1,10 @@
-import Quiz from "./assets/pages/Quiz"
+import Router from "./Router"
 
 function App() {
-
+  //dont assign this with anything but router it breaks the web
   return (
     <div>
-      <Quiz></Quiz>
+      <Router/>
     </div>
   )
 }

@@ -1,10 +1,11 @@
 {
-    "shuffle":true,
+    "shuffle": true,
     "name": "exercise 1",
     "description": "nfejlfnk",
-    "totalScore": 0.5,
+    "totalScore": 2,
     "quiz": [
         {
+            "shuffle": true,
             "weight": 0.5,
             "ai": false,
             "type": "choice",
@@ -17,6 +18,36 @@
             },
             "answer": "1",
             "solution": " hello this is a placeholder, if you are seeing this, its wip or i forgot"
+        },
+        {
+            "shuffle": false,
+            "weight": 0.5,
+            "ai": false,
+            "type": "choice",
+            "question": "Find x in 2x+13=1+5x",
+            "choices": {
+                "1": "1",
+                "2": "2",
+                "3": "3",
+                "4": "4"
+            },
+            "answer": "4",
+            "solution": "hello this is a placeholder, if you are seeing this, its wip or i forgot"
+        },
+        {
+            "shuffle": false,
+            "weight": 1,
+            "ai": false,
+            "type": "choice",
+            "question": "Mary wants to buy 10 apples, which will cost her 2x+10. How much does Mary need to pay?",
+            "choices": {
+                "1": "34",
+                "2": "30",
+                "3": "26",
+                "4": "22"
+            },
+            "answer": "2",
+            "solution": "hello this is a placeholder, if you are seeing this, its wip or i forgot"
         }
     ]
 }

@@ -1,10 +1,11 @@
 {
     "shuffle":true,
     "name": "Exercise 2",
-    "description": "kekekekekekekekgghhgrhgrd",
+    "description": "algebra 2",
     "totalScore": 0.5,
     "quiz": [
         {
+            "shuffle": false,
             "weight": 0.5,
             "ai": false,
             "type": "choice",

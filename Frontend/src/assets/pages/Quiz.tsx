@@ -11,6 +11,7 @@ function Quiz() {
       let subject = searchParams.get("subject") ?? "math"
       let syllabus = searchParams.get("syllabus") ?? "algebra"
       let id = searchParams.get("id") ?? "exercise_2"
+      setSearchParams({subject: subject,syllabus:syllabus,id:id})
       let fetchedQuiz: any = await (await fetch(`/api/getQuizContent?subject=${subject}&syllabus=${syllabus}&id=${id}`)).json()
 
       let quizName:string = fetchedQuiz.name

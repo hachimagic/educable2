@@ -3,7 +3,7 @@ function Card() {
         <div>
             <div className="bg-white rounded-3xl shadow-black w-full h-[75vh] flex flex-col justify-between">
                 <div className="flex  flex-col">
-                    <div className="self-start text-lg text-[#8A8A8A] pt-6 pl-10">Question / Problems</div>
+                    <div className="self-start text-lg text-[#8A8A8A] pt-6 pl-10 break-normal">Question / Problems</div>
                     <div className="flex flex-col my-2 mx-10 text-[#8A8A8A]">
                         <div className="flex items-center my-6">
                             <input id="default-radio-1" type="radio" value="" name="default-radio" className="w-4 h-4 bg-gray-100 border-gray-300">

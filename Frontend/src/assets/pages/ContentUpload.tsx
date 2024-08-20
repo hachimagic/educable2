@@ -19,7 +19,7 @@ function ContentUpload() {
                     <div className="h-[50vh] border border-[#B9B9B9]/25"></div>
                     <form action="#">
                         <div className="bg-white rounded-3xl shadow-black w-full h-[45vh] border-[#B9B9B9] border-2">
-                            <textarea placeholder="description..." className=" placeholder:text-lg rounded-3xl p-5 w-[40vw] h-full outline-none resize-none bg-white"></textarea>
+                            <textarea id="description" placeholder="description..." className=" placeholder:text-lg rounded-3xl p-5 w-[40vw] h-full outline-none resize-none bg-white"></textarea>
                         </div>
                         <div className="flex justify-between mt-4">
                             <button className="bg-gradient-to-br from-[#78CBFF] to-[#1A9CFF] rounded-2xl hover:bg-[#1A9CFF] hover:bg-none">

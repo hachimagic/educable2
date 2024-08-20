@@ -1,4 +1,4 @@
-function Card() {
+function QuizCard() {
     return (
         <div>
             <div className="bg-white rounded-3xl shadow-black w-full h-[75vh] flex flex-col justify-between">
@@ -55,4 +55,4 @@ function Card() {
     );
 }
 
-export default Card;
+export default QuizCard;

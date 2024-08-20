@@ -1,4 +1,4 @@
-import Card from "../../components/Card"
+import QuizCard from "../../components/QuizCard"
 
 function Quiz() {
   return (
@@ -28,7 +28,7 @@ function Quiz() {
         <h2 className="text-2xl text-[#8A8A8A]">descriptions</h2>
       </div>
       <div className="mt-3">
-        <Card />
+        <QuizCard />
       </div>
     </div>
   )

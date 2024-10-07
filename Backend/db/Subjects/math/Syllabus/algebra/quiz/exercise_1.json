@@ -1,0 +1,23 @@
+{
+    "shuffle": true,
+    "name": "Exercise 1",
+    "description": "A calculus exercise",
+    "totalScore": 2,
+    "Choices": [
+        {
+            "shuffle": true,
+            "weight": 0.5,
+            "ai": false,
+            "type": "choice",
+            "question": "What is the integral of x^2?",
+            "choices": {
+                "1": "x^3 / 3",
+                "2": "2x",
+                "3": "x",
+                "4": "3x"
+            },
+            "answer": "1",
+            "solution": "The integral of x^2 is x^3 / 3 + C"
+        }
+    ]
+}

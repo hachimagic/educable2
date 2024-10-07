@@ -1,0 +1,29 @@
+
+modules = ["nodejs-20"]
+hidden = [".config", "package-lock.json"]
+run = "npm run dev"
+install-all = "npm run install-all"
+
+[gitHubImport]
+requiredFiles = [".replit", "replit.nix", "package.json", "package-lock.json"]
+
+[nix]
+channel = "stable-24_05"
+
+[unitTest]
+language = "nodejs"
+
+[deployment]
+run = ["sh", "-c", "npm run dev"]
+deploymentTarget = "cloudrun"
+ignorePorts = false
+build = ["sh", "-c", "npm run install-all"]
+
+[[ports]]
+localPort = 3000
+externalPort = 3000
+
+[[ports]]
+localPort = 5173
+externalPort = 80
+exposeLocalhost = true

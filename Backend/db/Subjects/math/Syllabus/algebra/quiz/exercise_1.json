@@ -1,23 +1,83 @@
 {
-    "shuffle": true,
-    "name": "Exercise 1",
-    "description": "A calculus exercise",
-    "totalScore": 2,
-    "Choices": [
-        {
-            "shuffle": true,
-            "weight": 0.5,
-            "ai": false,
-            "type": "choice",
-            "question": "What is the integral of x^2?",
-            "choices": {
-                "1": "x^3 / 3",
-                "2": "2x",
-                "3": "x",
-                "4": "3x"
-            },
-            "answer": "1",
-            "solution": "The integral of x^2 is x^3 / 3 + C"
-        }
-    ]
+  "shuffle": true,
+  "name": "Algebra Exercise",
+  "description": "An algebra exercise",
+  "totalScore": 2.5,
+  "Choices": [
+    {
+      "number": "1",
+      "ai": false,
+      "type": "choice",
+      "question": "What is the solution to the equation 2x + 3 = 7?",
+      "choices": {
+        "1": "x = 1",
+        "2": "x = 2",
+        "3": "x = 4",
+        "4": "x = 3"
+      },
+      "answer": "2",
+      "solution": "Subtract 3 from both sides and divide by 2: x = 2.",
+      "explanation": "To solve 2x + 3 = 7, subtract 3 from both sides to get 2x = 4, then divide both sides by 2 to find x = 2."
+    },
+    {
+      "number": "2",
+      "ai": false,
+      "type": "choice",
+      "question": "Solve for x: 5x - 10 = 0.",
+      "choices": {
+        "1": "x = -2",
+        "2": "x = 2",
+        "3": "x = 0",
+        "4": "x = -5"
+      },
+      "answer": "2",
+      "solution": "Add 10 to both sides and divide by 5: x = 2.",
+      "explanation": "To solve 5x - 10 = 0, first add 10 to both sides, resulting in 5x = 10. Then divide both sides by 5 to find x = 2."
+    },
+    {
+      "number": "3",
+      "ai": false,
+      "type": "choice",
+      "question": "Solve for y: 3y + 4 = 10.",
+      "choices": {
+        "1": "y = 2",
+        "2": "y = -2",
+        "3": "y = 1",
+        "4": "y = 6"
+      },
+      "answer": "1",
+      "solution": "Subtract 4 from both sides and divide by 3: y = 2.",
+      "explanation": "To solve 3y + 4 = 10, subtract 4 from both sides to get 3y = 6. Then divide by 3 to find y = 2."
+    },
+    {
+      "number": "4",
+      "ai": false,
+      "type": "choice",
+      "question": "What is the solution to the inequality 2x - 5 > 7?",
+      "choices": {
+        "1": "x > 6",
+        "2": "x > 5",
+        "3": "x > 3",
+        "4": "x > 2"
+      },
+      "answer": "3",
+      "solution": "Add 5 to both sides and divide by 2: x > 6.",
+      "explanation": "To solve 2x - 5 > 7, add 5 to both sides to get 2x > 12. Then divide by 2 to get x > 6."
+    },
+    {
+      "number": "5",
+      "ai": false,
+      "type": "choice",
+      "question": "Factor the quadratic expression: x^2 - 5x + 6.",
+      "choices": {
+        "1": "(x - 3)(x - 2)",
+        "2": "(x - 2)(x - 3)",
+        "3": "(x + 3)(x - 2)",
+        "4": "(x + 2)(x - 3)"
+      },
+      "answer": "1",
+      "solution": "The factors of x^2 - 5x + 6 are (x - 3)(x - 2).",
+      "explanation": "To factor x^2 - 5x + 6, find two numbers that multiply to 6 and add to -5. The numbers -3 and -2 work, so the factors are (x - 3)(x - 2)."
+    }
+  ]
 }

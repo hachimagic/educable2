@@ -1,4 +1,0 @@
-# Markdown
-hello!
-
-[quiz]

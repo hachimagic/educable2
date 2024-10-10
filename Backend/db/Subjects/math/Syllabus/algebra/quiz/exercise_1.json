@@ -78,6 +78,48 @@
       "answer": "1",
       "solution": "The factors of x^2 - 5x + 6 are (x - 3)(x - 2).",
       "explanation": "To factor x^2 - 5x + 6, find two numbers that multiply to 6 and add to -5. The numbers -3 and -2 work, so the factors are (x - 3)(x - 2)."
+    },
+    {
+      "number": "1728563574203",
+      "ai": true,
+      "type": "choice",
+      "question": "Question: What is the derivative of the function f(x) = 3x^2 - 4x + 7?",
+      "choices": {
+        "1": "= 6x - 4",
+        "2": "= 6x + 4",
+        "3": "= 3x^2 - 4",
+        "4": "= 6x - 7"
+      },
+      "answer": "1",
+      "solution": "The correct answer is based on differentiation rules."
+    },
+    {
+      "number": "1728563587719",
+      "ai": true,
+      "type": "choice",
+      "question": "Question: What is the derivative of the function f(x) = 3x^2 + 2x - 5?",
+      "choices": {
+        "1": "= 6x + 2",
+        "2": "= 6x - 2",
+        "3": "= 3x^2 + 2",
+        "4": "= 6x + 2"
+      },
+      "answer": "1",
+      "solution": "The correct answer is based on differentiation rules."
+    },
+    {
+      "number": "1728564646305",
+      "ai": true,
+      "type": "choice",
+      "question": "Question: What is the derivative of the function f(x) = 3x^2 + 4x - 2?",
+      "choices": {
+        "1": "= 6x + 4",
+        "2": "= 3x + 2",
+        "3": "= 6x - 4",
+        "4": "= 3x - 2"
+      },
+      "answer": "1",
+      "solution": "The correct answer is based on differentiation rules."
     }
   ]
 }

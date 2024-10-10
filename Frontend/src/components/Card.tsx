@@ -6,8 +6,7 @@ type Props = {
   choiceIndices: string[];
   callback: (selected: string) => void;
   onToggleExplanation: () => void;
-  onNextQuestion: () => void;
-  onParallelize: () => void; // Ensure this prop is included
+  onParallelize: () => void;
 };
 
 function Card({
@@ -16,8 +15,7 @@ function Card({
   choiceIndices,
   callback,
   onToggleExplanation,
-  onNextQuestion,
-  onParallelize, // Destructure this prop from Props
+  onParallelize,
 }: Props) {
   const [answer, setAnswer] = useState("");
 
@@ -26,7 +24,7 @@ function Card({
   };
 
   return (
-    <div className="bg-white rounded-3xl shadow-xl w-full h-[75vh] flex flex-col justify-between p-6">
+    <div className="bg-white rounded-3xl shadow-xl w-3/4 h-[75vh] flex flex-col justify-between p-6">
       <div>
         <div className="text-lg text-[#8A8A8A]">{question}</div>
         <div className="mt-4">
@@ -67,7 +65,7 @@ function Card({
           <div className="flex gap-4">
             <button
               className="bg-gradient-to-br from-[#78CBFF] to-[#1A9CFF] text-white rounded-xl px-5 py-2 hover:from-[#1A9CFF] hover:to-[#1A9CFF]"
-              onClick={onParallelize} // Ensuring this button calls the correct prop
+              onClick={onParallelize}
             >
               Parallelize
             </button>
@@ -76,12 +74,6 @@ function Card({
               onClick={() => callback(answer)}
             >
               Submit
-            </button>
-            <button
-              className="bg-gradient-to-br from-[#78CBFF] to-[#1A9CFF] text-white rounded-xl px-5 py-2 hover:from-[#1A9CFF] hover:to-[#1A9CFF]"
-              onClick={onNextQuestion}
-            >
-              Next Question
             </button>
           </div>
         </div>

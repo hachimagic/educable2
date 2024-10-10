@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import Card from "../../components/Card";
 import Header from "../../components/Header";
+import Sidebar from "../../components/Sidebar"; // Import Sidebar component
 
 function Quiz() {
   const [searchParams] = useSearchParams();
@@ -10,6 +11,8 @@ function Quiz() {
   const [nonAIChoices, setNonAIChoices] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [parallelQuestions, setParallelQuestions] = useState<string[]>([]);
+  const questionRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   useEffect(() => {
     fetchData();
@@ -36,6 +39,7 @@ function Quiz() {
       setNonAIChoices(nonAIChoices);
       setTitle(quizData.name);
       setDescription(quizData.description);
+      questionRefs.current = new Array(nonAIChoices.length).fill(null);
     } catch (error) {
       console.error("Error fetching quiz data:", error);
       setError(error.message || "An error occurred");
@@ -52,6 +56,25 @@ function Quiz() {
         ? `Correct! The correct answer is: ${correctAnswer}.`
         : `Wrong! The correct answer is: ${correctAnswer}.`;
     alert(`Question ${index + 1}: ${explanation}`);
+  };
+
+  const onParallelize = (index: number) => {
+    setParallelQuestions((prev) => [
+      ...prev,
+      `Parallel Question ${index + 1}`,
+    ]);
+  };
+
+  const scrollToQuestion = (index: number) => {
+    const headerOffset = 100;
+    const elementPosition =
+      questionRefs.current[index]?.getBoundingClientRect().top || 0;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -89,16 +112,20 @@ function Quiz() {
             ) : (
               <div className="mt-3">
                 {nonAIChoices.map((choice, index) => (
-                  <div key={index} className="mb-4">
+                  <div
+                    key={index}
+                    className="mb-4"
+                    ref={(el) => (questionRefs.current[index] = el)}
+                  >
                     <Card
                       question={choice.question}
                       choices={Object.values(choice.choices)}
                       choiceIndices={Object.keys(choice.choices)}
-                      explanation={choice.explanation} // Make sure to pass explanation here
+                      explanation={choice.explanation}
                       callback={(submittedAnswer) =>
                         onSubmit(submittedAnswer, choice.answer, index)
                       }
-                      onParallelize={() => {}}
+                      onParallelize={() => onParallelize(index)}
                     />
                   </div>
                 ))}
@@ -108,25 +135,11 @@ function Quiz() {
             {error && <div className="text-red-500">{error}</div>}
           </div>
 
-          <div
-            className="w-1/4 pl-4 relative flex flex-col"
-            style={{ position: "sticky", top: "100px", height: "100vh" }}
-          >
-            <div
-              className="absolute left-0 top-0 h-full border-l border-gray-300"
-            ></div>
-            <h2 className="text-lg font-bold mb-2">Exercise Numbers</h2>
-            <div className="flex flex-col gap-2">
-              {nonAIChoices.map((_, index) => (
-                <button
-                  key={index}
-                  className="bg-white border border-gray-300 rounded-lg shadow-md px-4 py-2 text-left text-black hover:bg-gray-100 transition-all duration-200"
-                >
-                  Exercise {index + 1}
-                </button>
-              ))}
-            </div>
-          </div>
+          <Sidebar
+            nonAIChoices={nonAIChoices}
+            parallelQuestions={parallelQuestions}
+            onScrollToQuestion={scrollToQuestion}
+          />
         </div>
       </div>
     </div>

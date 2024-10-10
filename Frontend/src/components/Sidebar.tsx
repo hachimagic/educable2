@@ -3,12 +3,14 @@ import React from "react";
 type SidebarProps = {
 	nonAIChoices: any[];
 	parallelQuestions: string[];
+	answerStatuses: string[];
 	onScrollToQuestion: (index: number) => void;
 };
 
 const Sidebar: React.FC<SidebarProps> = ({
 	nonAIChoices,
 	parallelQuestions,
+	answerStatuses,
 	onScrollToQuestion,
 }) => {
 	return (
@@ -22,7 +24,10 @@ const Sidebar: React.FC<SidebarProps> = ({
 				{nonAIChoices.map((_, index) => (
 					<button
 						key={index}
-						className="bg-white border border-gray-300 rounded-lg shadow-md px-4 py-2 text-left text-black hover:bg-gray-100 transition-all duration-200"
+						className={`border border-gray-300 rounded-lg shadow-md px-4 py-2 text-left transition-all duration-200
+							${answerStatuses[index] === "correct" ? "bg-green-500 text-white" : ""}
+							${answerStatuses[index] === "incorrect" ? "bg-red-500 text-white" : ""}
+						`}
 						onClick={() => onScrollToQuestion(index)}
 					>
 						Exercise {index + 1}
@@ -37,7 +42,6 @@ const Sidebar: React.FC<SidebarProps> = ({
 						<button
 							key={index}
 							className="bg-white border border-gray-300 rounded-lg shadow-md px-4 py-2 text-left text-black hover:bg-gray-100 transition-all duration-200"
-							onClick={() => onScrollToQuestion(index)}
 						>
 							{question}
 						</button>

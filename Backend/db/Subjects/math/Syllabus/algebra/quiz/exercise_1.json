@@ -120,6 +120,104 @@
       },
       "answer": "1",
       "solution": "The correct answer is based on differentiation rules."
+    },
+    {
+      "number": "1728578543359",
+      "ai": true,
+      "type": "choice",
+      "question": "Question: What is the derivative of f(x) = 3x^2 + 4x - 5?",
+      "choices": {
+        "1": "= 6x + 4",
+        "2": "= 6x - 4",
+        "3": "= 6x + 5",
+        "4": "= 6x + 4"
+      },
+      "answer": "1",
+      "solution": "The correct answer is based on differentiation rules."
+    },
+    {
+      "number": "1728578632626",
+      "ai": true,
+      "type": "choice",
+      "question": "Question: What is the derivative of the function f(x) = 3x^2 + 2x - 5?",
+      "choices": {
+        "1": "f'(x",
+        "2": "f'(x",
+        "3": "f'(x",
+        "4": "f'(x"
+      },
+      "answer": "1",
+      "solution": "The correct answer is based on differentiation rules."
+    },
+    {
+      "number": "1728579787278",
+      "ai": true,
+      "type": "choice",
+      "question": "Question: What is the derivative of f(x) = 3x^2 + 5x - 2?",
+      "choices": {
+        "1": "= 6x + 5",
+        "2": "= 3x + 5",
+        "3": "= 6x - 5",
+        "4": "= 3x - 5"
+      },
+      "answer": "1",
+      "solution": "The correct answer is based on differentiation rules."
+    },
+    {
+      "number": "1728579792405",
+      "ai": true,
+      "type": "choice",
+      "question": "Question: What is the derivative of the function f(x) = 3x^2 - 4x + 5?",
+      "choices": {
+        "1": "= 6x - 4",
+        "2": "= 3x - 4",
+        "3": "= 6x + 4",
+        "4": "= 3x + 4"
+      },
+      "answer": "1",
+      "solution": "The correct answer is based on differentiation rules."
+    },
+    {
+      "number": "1728579793375",
+      "ai": true,
+      "type": "choice",
+      "question": "Question: What is the derivative of the function f(x) = 3x^2 + 5x - 2?",
+      "choices": {
+        "1": "= 6x + 5",
+        "2": "= 6x - 5",
+        "3": "= 4x + 5",
+        "4": "= 6x + 2"
+      },
+      "answer": "1",
+      "solution": "The correct answer is based on differentiation rules."
+    },
+    {
+      "number": "1728579794379",
+      "ai": true,
+      "type": "choice",
+      "question": "Question: What is the derivative of the function f(x) = 3x^2 + 4x - 5?",
+      "choices": {
+        "1": "= 6x + 4",
+        "2": "= 6x - 4",
+        "3": "= 6x + 5",
+        "4": "= 6x + 4"
+      },
+      "answer": "1",
+      "solution": "The correct answer is based on differentiation rules."
+    },
+    {
+      "number": "1728580063490",
+      "ai": true,
+      "type": "choice",
+      "question": "Question: What is the derivative of the function f(x) = 3x^2 + 4x - 2?",
+      "choices": {
+        "1": "f'(x",
+        "2": "f'(x",
+        "3": "f'(x",
+        "4": "f'(x"
+      },
+      "answer": "1",
+      "solution": "The correct answer is based on differentiation rules."
     }
   ]
 }

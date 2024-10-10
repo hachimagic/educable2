@@ -1,18 +1,24 @@
+// current Quiz.tsx
 import React, { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import Card from "../../components/Card";
 import Header from "../../components/Header";
-import Sidebar from "../../components/Sidebar"; // Import Sidebar component
+import Sidebar from "../../components/Sidebar";
 
 function Quiz() {
   const [searchParams] = useSearchParams();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [nonAIChoices, setNonAIChoices] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [parallelQuestions, setParallelQuestions] = useState<string[]>([]);
+  const [answerStatuses, setAnswerStatuses] = useState<string[]>([]);
   const questionRefs = useRef<Array<HTMLDivElement | null>>([]);
+
+  // Manage AI Questions
+  const [aiQuestions, setAIQuestions] = useState<any[]>([]);
+  const [aiQuestionIndex, setAIQuestionIndex] = useState(0);
 
   useEffect(() => {
     fetchData();
@@ -40,9 +46,15 @@ function Quiz() {
       setTitle(quizData.name);
       setDescription(quizData.description);
       questionRefs.current = new Array(nonAIChoices.length).fill(null);
+
+      // Initialize answerStatuses based on the number of questions
+      setAnswerStatuses(new Array(nonAIChoices.length).fill("pending"));
+
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching quiz data:", error);
       setError(error.message || "An error occurred");
+      setLoading(false);
     }
   }
 
@@ -51,19 +63,49 @@ function Quiz() {
     correctAnswer: string,
     index: number
   ) => {
+    const status = submittedAnswer === correctAnswer ? "correct" : "incorrect";
+    setAnswerStatuses((prevStatuses) => {
+      const newStatuses = [...prevStatuses];
+      newStatuses[index] = status;
+      return newStatuses;
+    });
     const explanation =
-      submittedAnswer === correctAnswer
+      status === "correct"
         ? `Correct! The correct answer is: ${correctAnswer}.`
         : `Wrong! The correct answer is: ${correctAnswer}.`;
     alert(`Question ${index + 1}: ${explanation}`);
   };
 
-  const onParallelize = (index: number) => {
-    setParallelQuestions((prev) => [
-      ...prev,
-      `Parallel Question ${index + 1}`,
-    ]);
-  };
+  const onParallelize = async (index: number) => {
+    try {
+      const subject = searchParams.get("subject") ?? "math";
+      const subsubject = searchParams.get("subsubject") ?? "algebra";
+      const id = searchParams.get("id") ?? "exercise_1";
+      const requestBody = { topic: 'calculus', subject, subsubject, id, log: true };
+
+      const response = await fetch('/api/generate-similar-question', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to generate question');
+      }
+
+      const responseBody = await response.json();
+      setAIQuestions([...aiQuestions, responseBody]);
+      setParallelQuestions((prev) => [
+        ...prev,
+        `Parallel Question ${index + 1}`,
+      ]);
+    } catch (error) {
+      console.error('Error generating similar question:', error);
+      setError('Could not generate new AI question');
+    }
+  }
 
   const scrollToQuestion = (index: number) => {
     const headerOffset = 100;
@@ -138,6 +180,7 @@ function Quiz() {
           <Sidebar
             nonAIChoices={nonAIChoices}
             parallelQuestions={parallelQuestions}
+            answerStatuses={answerStatuses}
             onScrollToQuestion={scrollToQuestion}
           />
         </div>

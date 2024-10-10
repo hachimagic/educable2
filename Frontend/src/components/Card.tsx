@@ -4,8 +4,8 @@ type Props = {
   question: string;
   choices: string[];
   choiceIndices: string[];
+  explanation: string;
   callback: (selected: string) => void;
-  onToggleExplanation: () => void;
   onParallelize: () => void;
 };
 
@@ -13,18 +13,19 @@ function Card({
   question,
   choices,
   choiceIndices,
+  explanation,
   callback,
-  onToggleExplanation,
   onParallelize,
 }: Props) {
   const [answer, setAnswer] = useState("");
+  const [showExplanation, setShowExplanation] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAnswer(e.target.value);
   };
 
   return (
-    <div className="bg-white rounded-3xl shadow-xl w-3/4 h-[75vh] flex flex-col justify-between p-6">
+    <div className="bg-white rounded-3xl shadow-xl w-full h-[75vh] flex flex-col justify-between p-4">
       <div>
         <div className="text-lg text-[#8A8A8A]">{question}</div>
         <div className="mt-4">
@@ -38,7 +39,10 @@ function Card({
                 className="w-4 h-4 bg-gray-100 border-gray-300"
                 onChange={handleChange}
               />
-              <label htmlFor={`radio-${index}`} className="ml-2 text-sm font-medium">
+              <label
+                htmlFor={`radio-${index}`}
+                className="ml-2 text-sm font-medium"
+              >
                 {currentChoice}
               </label>
             </div>
@@ -56,7 +60,7 @@ function Card({
               className="text-[#1A9CFF] hover:underline ml-1"
               onClick={(e) => {
                 e.preventDefault();
-                onToggleExplanation();
+                setShowExplanation(!showExplanation);
               }}
             >
               View explanation
@@ -77,6 +81,12 @@ function Card({
             </button>
           </div>
         </div>
+        {showExplanation && (
+          <div className="mt-4 p-2 bg-gray-100 rounded-lg">
+            <h3 className="text-lg font-medium">Explanation:</h3> {/* Larger font for title */}
+            <p className="text-base text-gray-800">{explanation}</p> {/* Larger font for explanation */}
+          </div>
+        )}
       </div>
     </div>
   );

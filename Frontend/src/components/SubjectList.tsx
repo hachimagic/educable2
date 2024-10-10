@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// URLs for the icons in the public folder
 const ArrowUpIcon = '/icons/arrow-up-icon.svg';
 const ArrowDownIcon = '/icons/arrow-down-icon.svg';
 
@@ -35,9 +34,12 @@ const SubjectList: React.FC<SubjectListProps> = ({ subjects, onSubjectChange }) 
   return (
     <div className="subject-list">
       {subjects.map((subject) => (
-        <div key={subject.name} className="mb-4">
+        <div 
+          key={subject.name} 
+          className="mb-4"
+        >
           <div
-            className="flex justify-between items-center cursor-pointer p-3 bg-gray-200 rounded-md hover:bg-gray-300"
+            className="flex justify-between items-center cursor-pointer p-3 bg-gray-200 rounded-md shadow-md hover:bg-gray-300 hover:shadow-lg transition-all duration-200"
             onClick={() => handleSubjectClick(subject.name)}
           >
             <h2 className="text-xl font-semibold">{subject.name}</h2>

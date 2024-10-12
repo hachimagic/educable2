@@ -1,11 +1,19 @@
 // current Quiz.tsx
 import React, { useState, useEffect, useRef } from "react";
+import { Route, useNavigate } from 'react-router-dom';
 import { useSearchParams } from "react-router-dom";
 import Card from "../../components/Card";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
-
 function Quiz() {
+
+  const navigate = useNavigate(); // Get the navigate function
+
+  const handleRefreshClick = () =>
+    {
+      navigate("/landing")
+    }  
+
   const [searchParams] = useSearchParams();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -53,7 +61,7 @@ function Quiz() {
       setLoading(false);
     } catch (error) {
       console.error("Error fetching quiz data:", error);
-      setError(error.message || "An error occurred");
+      setError((error as Error).message || "An error occurred");
       setLoading(false);
     }
   }
@@ -131,7 +139,7 @@ function Quiz() {
           backgroundColor: "white",
         }}
       >
-        <Header onRefresh={() => window.location.reload()} />
+        <Header onRefresh={handleRefreshClick} />
       </div>
 
       <div style={{ paddingTop: "100px" }}>

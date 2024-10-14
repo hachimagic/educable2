@@ -11,10 +11,12 @@ import NotFound from './assets/pages/NotFound';
 import Login from './assets/pages/Login';
 import Register from './assets/pages/Register';
 import Profile from './assets/pages/Profile';
+import Header from './components/Header';
+import LandingP from './assets/pages/LandingP';
 
 function ProtectedRoute({ children }: { children: JSX.Element }) {
   const { isAuthenticated } = useAuth(); // Use the useAuth hook here
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  return isAuthenticated ? children : <Navigate to="/landing" />;
 }
 
 function App() {
@@ -31,6 +33,10 @@ function App() {
           <Route path="/quiz" element={<ProtectedRoute><Quiz /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="*" element={<NotFound />} />
+          <Route path="landing" element={<LandingP />} />
+          <Route path="headerTest" element={<Header onRefresh={function (): void {
+            console.log("Navigate to LandingPage!")
+          } } />} />
         </Routes>
       </AuthProvider>
     </Router>

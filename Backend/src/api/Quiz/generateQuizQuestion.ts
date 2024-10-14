@@ -36,7 +36,7 @@ export default async function generateSimilarQuestion(req: Request, res: Respons
 			{
 				model: 'gpt-3.5-turbo',
 				messages: [
-					{ role: "system", content: "You are a quiz AI. Provide a clear question, four choices, each prefixed by numbers 1 through 4, and specify the correct answer using 'Answer: X' format." },
+					{ role: "system", content: "You are a highly knowledgeable math professor. Provide clear and precise quiz questions without any mistakes. Ensure each question is followed by four answer choices, numbered 1 through 4, and specify the correct answer using 'Answer: X'."},
 					{ role: "user", content: `Create a quiz question on ${topic}. Include a question, four options labeled 1 to 4, and specify correct option as 'Answer: X'.` }
 				],
 				max_tokens: 150,

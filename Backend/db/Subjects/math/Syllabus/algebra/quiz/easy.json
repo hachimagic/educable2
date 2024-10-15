@@ -260,6 +260,34 @@
       },
       "answer": "1",
       "solution": "The correct answer is based on differentiation rules."
+    },
+    {
+      "number": "1728974029594",
+      "ai": true,
+      "type": "choice",
+      "question": "Question: What is the derivative of the function f(x) = 3x^2 - 4x + 2?",
+      "choices": {
+        "1": "= 6x - 4",
+        "2": "= 6x + 4",
+        "3": "= 3x^2 - 4",
+        "4": "= 6x - 1"
+      },
+      "answer": "1",
+      "solution": "The correct answer is based on differentiation rules."
+    },
+    {
+      "number": "1728974031342",
+      "ai": true,
+      "type": "choice",
+      "question": "Question: What is the derivative of the function f(x) = 3x^2 - 4x + 2?",
+      "choices": {
+        "1": "= 6x - 4",
+        "2": "= 3x^2 - 4x",
+        "3": "= 6x - 4x",
+        "4": "= 6x - 4"
+      },
+      "answer": "1",
+      "solution": "The correct answer is based on differentiation rules."
     }
   ]
 }

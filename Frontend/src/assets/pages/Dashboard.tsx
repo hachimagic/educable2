@@ -129,9 +129,9 @@ function Dashboard() {
   };
 
   return (
-    <main className="flex flex-col items-center px-20 py-10 bg-[#F7F7F7] h-screen overflow-hidden font-default">
-      <Header onRefresh={handleRefresh} />
-      <section className="flex-1 flex gap-10 mt-10 w-full max-w-[1080px] h-full overflow-hidden">
+        <main className="flex flex-col items-center px-20 py-10 bg-[#F7F7F7] h-screen overflow-hidden font-default">
+          <Header onRefresh={handleRefresh} />
+          <section className="flex-1 flex gap-10 mt-10 w-full max-w-[1080px] h-full overflow-hidden">
         <aside className="flex-shrink-0 w-[33%] overflow-y-auto max-h-full">
           <SubjectList subjects={subjects} onSubjectChange={handleSubjectChange} />
         </aside>

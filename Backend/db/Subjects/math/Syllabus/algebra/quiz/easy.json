@@ -246,6 +246,20 @@
       },
       "answer": "1",
       "solution": "To find the derivative of a function, apply the power rule which states that the derivative of x^n is n*x^(n-1). Therefore, the derivative of f(x) = 3x^2 + 4x - 2 is f'(x) = 6x + 4."
+    },
+    {
+      "number": "1729363956192",
+      "ai": true,
+      "type": "choice",
+      "question": "Question: What is the derivative of f(x) = 3x^2 + 4x - 1 with respect to x?",
+      "choices": {
+        "1": "f'(x",
+        "2": "f'(x",
+        "3": "f'(x",
+        "4": "f'(x"
+      },
+      "answer": "1",
+      "solution": "To find the derivative of a function, we apply the power rule which states that the derivative of x^n is nx^(n-1). Taking the derivative of each term in f(x) = 3x^2 + 4x - 1 gives f'(x) = 6x + 4."
     }
   ]
 }

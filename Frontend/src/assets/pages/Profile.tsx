@@ -1,36 +1,27 @@
+// Profile.tsx
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../../context/AuthContext'; // Ensure this path is correct
+import { useAuth } from '../../context/AuthContext';
+import Header from '../../components/Header';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
-// Define a simple ProfileField component
-function ProfileField({ label, value }: { label: string, value: string | undefined }) {
+interface ProfileData {
+	username: string;
+	realName: string;
+	surname: string;
+	email: string;
+	profilePic?: string;
+}
+
+function ProfileField({ label, value }: { label: string, value: string }) {
 	return (
-		<div className="flex flex-col mb-4">
+		<div className="flex flex-col mb-1">
 			<label className="font-semibold">{label}:</label>
 			<span>{value}</span>
 		</div>
 	);
 }
 
-// Define LoadingSpinner component
-function LoadingSpinner() {
-	return (
-		<div className="spinner-border animate-spin inline-block w-8 h-8 border-4 border-t-blue-500 rounded-full" role="status">
-			<span className="visually-hidden">Loading...</span>
-		</div>
-	);
-}
-
-// Define the ProfileData type
-interface ProfileData {
-	username: string;
-	realName: string;
-	surname: string;
-	email: string;
-	profilePic?: string; // Include profilePic if used
-}
-
-// Profile component
-function Profile() {
+const Profile: React.FC = () => {
 	const { userData } = useAuth();
 	const [profile, setProfile] = useState<ProfileData | null>(null);
 	const [editMode, setEditMode] = useState(false);
@@ -55,7 +46,7 @@ function Profile() {
 
 				const data: ProfileData = await response.json();
 				setProfile(data);
-				setFormData(data); // Initialize formData with fetched data
+				setFormData(data);
 			} catch (err: any) {
 				console.error('Error fetching profile:', err.message);
 				setError('Failed to fetch profile data. Please try again later.');
@@ -85,7 +76,7 @@ function Profile() {
 					headers: {
 						'Content-Type': 'application/json',
 					},
-					body: JSON.stringify(formData), // Ensure formData includes username
+					body: JSON.stringify(formData),
 				});
 
 				if (!response.ok) {
@@ -101,67 +92,84 @@ function Profile() {
 		}
 	};
 
-	if (loading) {
-		return (
-			<div className="flex justify-center items-center min-h-screen">
-				<LoadingSpinner />
-			</div>
-		);
-	}
-
-	if (error) {
-		return <div className="text-red-500">{error}</div>;
-	}
-
 	return (
-		<div className="flex justify-center items-center min-h-screen bg-gray-100">
-			<div className="bg-white rounded-lg shadow-lg p-8 max-w-3xl w-full">
-				<h1 className="text-[#0279D4] font-bold text-4xl mb-6 text-center">Profile</h1>
-				<div className="flex">
-					<img 
-						src={profile?.profilePic || '/path-to-default-profile-pic.jpg'} 
-						alt="Profile" 
-						className="w-40 h-40 rounded-full border-4 border-blue-500 shadow-md" 
-					/>
-					<div className="flex items-center mx-8 h-40">
-						<div className="border-l-2 border-gray-300 h-full"></div>
-					</div>
-					<div className="flex flex-col justify-center space-y-3 text-lg">
-						{editMode ? (
-							<>
-								<input type="text" name="username" value={formData?.username || ''} disabled />
-								<input type="text" name="realName" value={formData?.realName || ''} onChange={handleChange} />
-								<input type="text" name="surname" value={formData?.surname || ''} onChange={handleChange} />
-								<input type="email" name="email" value={formData?.email || ''} onChange={handleChange} />
-							</>
-						) : (
-							<>
-								<ProfileField label="Username" value={profile?.username} />
-								<ProfileField label="Real Name" value={profile?.realName} />
-								<ProfileField label="Surname" value={profile?.surname} />
-								<ProfileField label="Email" value={profile?.email} />
-							</>
-						)}
-					</div>
-				</div>
-				<div className="flex justify-center mt-6 space-x-4">
-					{editMode ? (
-						<button
-							onClick={handleSave}
-							className="bg-gradient-to-r from-[#78CBFF] to-[#1A9CFF] text-white rounded-xl px-5 py-2 hover:bg-gradient-to-r hover:from-[#1A9CFF] hover:to-[#78CBFF] transform hover:scale-105 transition-transform duration-200"
-						>
-							Save
-						</button>
-					) : null}
-					<button
-						onClick={handleEditToggle}
-						className="bg-gradient-to-r from-[#78CBFF] to-[#1A9CFF] text-white rounded-xl px-5 py-2 hover:bg-gradient-to-r hover:from-[#1A9CFF] hover:to-[#78CBFF] transform hover:scale-105 transition-transform duration-200"
-					>
-						{editMode ? 'Cancel' : 'Edit Profile'}
-					</button>
+		<main className="flex flex-col items-center min-h-screen bg-[#F7F7F7]">
+			<div className="w-full max-w-[1080px]">
+				<Header onRefresh={() => window.location.reload()} />
+			</div>
+			<div className="flex flex-grow justify-center items-center py-10 mt-6 w-full max-w-xl">
+				<div className="bg-white rounded-lg shadow-lg p-8 w-full h-full overflow-auto">
+					<h1 className="text-[#0279D4] font-bold text-4xl mb-6 text-center">Profile</h1>
+					{loading ? (
+						<LoadingSpinner />
+					) : error ? (
+						<div className="text-red-500">{error}</div>
+					) : (
+						<div className="flex flex-col md:flex-row items-center mb-5">
+							<div className="flex justify-center items-center w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-blue-500 shadow-md mb-4 md:mb-0">
+								<img
+									src={profile?.profilePic || '/path-to-default-profile-pic.jpg'}
+									alt="Profile"
+									className="w-28 h-28 md:w-36 md:h-36 rounded-full"
+								/>
+							</div>
+							<div className="flex flex-col mx-0 md:mx-8 text-lg w-full">
+								{editMode ? (
+									<>
+										<input
+											type="text"
+											name="realName"
+											value={formData?.realName || ''}
+											onChange={handleChange}
+											className="mb-2 border-b border-gray-300 w-full px-2 py-1"
+										/>
+										<input
+											type="text"
+											name="surname"
+											value={formData?.surname || ''}
+											onChange={handleChange}
+											className="mb-2 border-b border-gray-300 w-full px-2 py-1"
+										/>
+										<input
+											type="email"
+											name="email"
+											value={formData?.email || ''}
+											onChange={handleChange}
+											className="mb-2 border-b border-gray-300 w-full px-2 py-1"
+										/>
+									</>
+								) : (
+									<>
+										<ProfileField label="Username" value={profile?.username} />
+										<ProfileField label="Real Name" value={profile?.realName} />
+										<ProfileField label="Surname" value={profile?.surname} />
+										<ProfileField label="Email" value={profile?.email} />
+									</>
+								)}
+							</div>
+						</div>
+					)}
+					{!loading && !error && (
+						<div className="flex justify-center space-x-4 mt-6">
+							{editMode && (
+								<button
+									onClick={handleSave}
+									className="bg-gradient-to-r from-[#78CBFF] to-[#1A9CFF] text-white rounded-xl px-5 py-2 transform hover:scale-105 transition-transform duration-200"
+								>
+									Save
+								</button>
+							)}
+							<button
+								onClick={handleEditToggle}
+								className="bg-gradient-to-r from-[#78CBFF] to-[#1A9CFF] text-white rounded-xl px-5 py-2 transform hover:scale-105 transition-transform duration-200"
+							>
+								{editMode ? 'Cancel' : 'Edit Profile'}
+							</button>
+						</div>
+					)}
 				</div>
 			</div>
-		</div>
+		</main>
 	);
 }
 

@@ -52,6 +52,42 @@ interface UserRow {
   password: string;
 }
 
+
+
+
+
+
+
+app.post('/api/profile/update', (req: Request, res: Response) => {
+  const { username, realName, surname, email } = req.body;
+  // Validate required fields
+  if (!username || !realName || !surname || !email) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+  const updateQuery = `UPDATE users SET realName = ?, surname = ?, email = ? WHERE username = ?`;
+  db.run(updateQuery, [realName, surname, email, username], function (err) {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    if (this.changes === 0) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.json({ message: 'Profile updated successfully' });
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.get('/api/profile', (req: Request, res: Response) => {
   const username = req.headers['x-username']; // Assume username is sent in headers for simplicity
 

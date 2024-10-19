@@ -27,23 +27,23 @@ function Card({
   return (
     <div className="bg-white rounded-3xl shadow-xl w-full h-[75vh] flex flex-col justify-between p-4">
       <div>
-        <div className="text-lg text-[#8A8A8A]">{question}</div>
+        <div className="text-lg text-[#8A8A8A] text-xl font-semibold">{question}</div> {/* Increased font size */}
         <div className="mt-4">
           {choices.map((currentChoice, index) => (
             <div className="flex items-center my-3" key={index}>
-              <input
-                id={`radio-${index}`}
-                type="radio"
-                value={choiceIndices[index]}
-                name="radio"
-                className="w-4 h-4 bg-gray-100 border-gray-300"
-                onChange={handleChange}
-              />
               <label
-                htmlFor={`radio-${index}`}
-                className="ml-2 text-sm font-medium"
+                htmlFor={`radio-${question}-${index}`} // Unique 'for' attribute
+                className="flex items-center ml-2 text-lg font-medium cursor-pointer" // Added cursor-pointer class
               >
-                {currentChoice}
+                <input
+                  id={`radio-${question}-${index}`} // Unique 'id' attribute
+                  type="radio"
+                  value={choiceIndices[index]}
+                  name={`radio-${question}`} // Ensure unique name for each question
+                  className="w-4 h-4 bg-gray-100 border-gray-300"
+                  onChange={handleChange}
+                />
+                <span className="ml-2">{currentChoice}</span> {/* Add margin left */}
               </label>
             </div>
           ))}
@@ -54,10 +54,10 @@ function Card({
         <hr className="border-[#B9B9B9]" />
         <div className="flex justify-between items-center pt-4">
           <div className="flex items-center">
-            <p className="text-sm">Stuck?</p>
+            <p className="text-lg">Stuck?</p> {/* Increased font size */}
             <a
               href="#"
-              className="text-[#1A9CFF] hover:underline ml-1"
+              className="text-[#1A9CFF] hover:underline ml-1 text-lg" // Increased font size
               onClick={(e) => {
                 e.preventDefault();
                 setShowExplanation(!showExplanation);

@@ -48,7 +48,7 @@ async function fetchQuestionFromOpenAI(topic: string) {
 								{ role: "system", content: "You are a highly knowledgeable math professor." },
 								{ 
 										role: "user", 
-										content: `Create a clear and accurate quiz question on ${topic}. 
+										content: `Create a clear,simple and accurate quiz question on ${topic}. 
 												Make sure the options are relevant and do not contain any random or nonsensical answers. 
 												The output should include:
 												1. The question

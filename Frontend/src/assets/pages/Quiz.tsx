@@ -106,8 +106,8 @@ function Quiz() {
 
   return (
     <div className="flex flex-col mx-20 my-4 bg-[#EEEEEE] font-default">
-      {/* Ensure similar styling class is applied */}
-      <div className="header-wrapper">
+      {/* Adding margin-bottom to the header-wrapper */}
+      <div className="header-wrapper mb-8">
         <Header onRefresh={() => window.location.reload()} />
       </div>
       <div>

@@ -14,7 +14,6 @@ function Quiz() {
   const [aiQuestions, setAIQuestions] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [parallelQuestions, setParallelQuestions] = useState<string[]>([]);
   const [answerStatuses, setAnswerStatuses] = useState<string[]>([]);
   const questionRefs = useRef<Array<HTMLDivElement | null>>([]);
   const [feedbackMessages, setFeedbackMessages] = useState<string[]>([]);
@@ -42,7 +41,7 @@ function Quiz() {
       setAIPool(aiPool);
       setTitle(quizData.name);
       setDescription(quizData.description);
-      questionRefs.current = new Array(nonAIChoices.length).fill(null);
+      questionRefs.current = new Array(nonAIChoices.length * 2).fill(null);
 
       setAnswerStatuses(new Array(nonAIChoices.length).fill("pending"));
       setFeedbackMessages(new Array(nonAIChoices.length).fill(""));
@@ -73,25 +72,22 @@ function Quiz() {
 
   const onParallelize = async (index: number) => {
     try {
-      // Check if there's an AI question available in the pool
       if (aiQuestions[index]) {
-        console.log('Using existing AI-generated question:', aiQuestions[index]);
-        setParallelQuestions(prev => [...prev, `Parallel Question ${index + 1}`]);
+        // AI question already exists
         return;
       }
 
       if (aiPool.length > 0) {
-        const aiQuestion = aiPool.shift(); // Get an AI question from the pool
+        const aiQuestion = aiPool.shift(); // Use an AI question from the pool
         setAIQuestions(prev => {
           const updatedAIQuestions = [...prev];
           updatedAIQuestions[index] = aiQuestion;
           return updatedAIQuestions;
         });
-        setParallelQuestions(prev => [...prev, `Parallel Question ${index + 1}`]);
         return;
       }
 
-      // Proceed to generate a new question if the AI pool is exhausted
+      // Generate a new AI question if none available in pool
       const subject = searchParams.get("subject") ?? "math";
       const subsubject = searchParams.get("subsubject") ?? "algebra";
       const id = searchParams.get("id") ?? "exercise_1";
@@ -113,17 +109,17 @@ function Quiz() {
         return updatedAIQuestions;
       });
 
-      setParallelQuestions(prev => [...prev, `Parallel Question ${index + 1}`]);
-
     } catch (err: any) {
       console.error('Error generating similar question:', err);
       setError('Could not generate new AI question');
     }
   };
 
-  const scrollToQuestion = (index: number) => {
+  const scrollToQuestion = (index: number, isParallel = false) => {
+    const effectiveIndex = isParallel ? nonAIChoices.length + index : index;
+
     const headerOffset = 100;
-    const elementPosition = questionRefs.current[index]?.getBoundingClientRect().top || 0;
+    const elementPosition = questionRefs.current[effectiveIndex]?.getBoundingClientRect().top || 0;
     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
     window.scrollTo({ top: offsetPosition, behavior: "smooth" });
@@ -131,7 +127,6 @@ function Quiz() {
 
   return (
     <div className="flex flex-col mx-20 my-4 bg-[#EEEEEE] font-default">
-      {/* Adding margin-bottom to the header-wrapper */}
       <div className="header-wrapper mb-8">
         <Header onRefresh={() => window.location.reload()} />
       </div>
@@ -161,14 +156,15 @@ function Quiz() {
                       onParallelize={() => onParallelize(index)}
                     />
                     <div className="text-sm text-gray-600 mt-2">{feedbackMessages[index]}</div>
-                    {parallelQuestions.includes(`Parallel Question ${index + 1}`) && aiQuestions[index] && (
-                      <div className="mt-6 parallelized-card" key={`ai-${index}`}>
+                    {aiQuestions[index] && (
+                      <div className="mt-6 parallelized-card" ref={el => questionRefs.current[nonAIChoices.length + index] = el} key={`ai-${index}`}>
                         <Card
                           question={aiQuestions[index]?.question}
                           choices={Object.values(aiQuestions[index]?.choices || {})}
                           choiceIndices={Object.keys(aiQuestions[index]?.choices || {})}
                           explanation={aiQuestions[index]?.explanation}
                           callback={submittedAnswer => onSubmit(submittedAnswer, aiQuestions[index]?.answer, index)}
+                          onParallelize={() => onParallelize(index)}
                         />
                       </div>
                     )}
@@ -179,8 +175,9 @@ function Quiz() {
             {error && <div className="text-red-500">{error}</div>}
           </div>
           <Sidebar
-            nonAIChoices={nonAIChoices}
-            parallelQuestions={parallelQuestions}
+            // The sidebar needs to know the logic of indexing including both normal and parallel questions
+            normalQuestions={nonAIChoices}
+            parallelQuestions={aiQuestions}
             answerStatuses={answerStatuses}
             onScrollToQuestion={scrollToQuestion}
           />

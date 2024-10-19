@@ -10,12 +10,13 @@ function Quiz() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [nonAIChoices, setNonAIChoices] = useState<any[]>([]);
+  const [aiPool, setAIPool] = useState<any[]>([]);
+  const [aiQuestions, setAIQuestions] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [parallelQuestions, setParallelQuestions] = useState<string[]>([]);
   const [answerStatuses, setAnswerStatuses] = useState<string[]>([]);
   const questionRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const [aiQuestions, setAIQuestions] = useState<any[]>([]);
   const [feedbackMessages, setFeedbackMessages] = useState<string[]>([]);
 
   useEffect(() => {
@@ -32,9 +33,13 @@ function Quiz() {
       if (!response.ok) throw new Error("Failed to fetch quiz data");
 
       const quizData = await response.json();
+
+      // Separate AI and non-AI questions
       const nonAIChoices = quizData.Choices.filter((choice: any) => !choice.ai);
+      const aiPool = quizData.Choices.filter((choice: any) => choice.ai);
 
       setNonAIChoices(nonAIChoices);
+      setAIPool(aiPool);
       setTitle(quizData.name);
       setDescription(quizData.description);
       questionRefs.current = new Array(nonAIChoices.length).fill(null);
@@ -68,6 +73,25 @@ function Quiz() {
 
   const onParallelize = async (index: number) => {
     try {
+      // Check if there's an AI question available in the pool
+      if (aiQuestions[index]) {
+        console.log('Using existing AI-generated question:', aiQuestions[index]);
+        setParallelQuestions(prev => [...prev, `Parallel Question ${index + 1}`]);
+        return;
+      }
+
+      if (aiPool.length > 0) {
+        const aiQuestion = aiPool.shift(); // Get an AI question from the pool
+        setAIQuestions(prev => {
+          const updatedAIQuestions = [...prev];
+          updatedAIQuestions[index] = aiQuestion;
+          return updatedAIQuestions;
+        });
+        setParallelQuestions(prev => [...prev, `Parallel Question ${index + 1}`]);
+        return;
+      }
+
+      // Proceed to generate a new question if the AI pool is exhausted
       const subject = searchParams.get("subject") ?? "math";
       const subsubject = searchParams.get("subsubject") ?? "algebra";
       const id = searchParams.get("id") ?? "exercise_1";
@@ -90,6 +114,7 @@ function Quiz() {
       });
 
       setParallelQuestions(prev => [...prev, `Parallel Question ${index + 1}`]);
+
     } catch (err: any) {
       console.error('Error generating similar question:', err);
       setError('Could not generate new AI question');

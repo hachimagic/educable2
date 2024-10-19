@@ -122,48 +122,6 @@
       "solution": "Taking the derivative of each term separately, the derivative of 3x^2 is 6x, the derivative of -4x is -4, and the derivative of a constant term 5 is 0. Therefore, the derivative of f(x) is 6x - 4."
     },
     {
-      "number": "1729346343700",
-      "ai": true,
-      "type": "choice",
-      "question": "Question: What is the derivative of the function f(x) = 3x^2 - 4x + 2?",
-      "choices": {
-        "1": "f'(x",
-        "2": "f'(x",
-        "3": "f'(x",
-        "4": "f'(x"
-      },
-      "answer": "1",
-      "solution": "To find the derivative of a function, you differentiate each term separately. The derivative of 3x^2 is 6x, the derivative of -4x is -4, and the derivative of a constant term like 2 is 0. Therefore, the derivative of f(x) = 3x^2 - 4x + 2 is f'(x) = 6x - 4."
-    },
-    {
-      "number": "1729346394778",
-      "ai": true,
-      "type": "choice",
-      "question": "Question: What is the derivative of the function f(x) = 3x^2 - 4x + 5?",
-      "choices": {
-        "1": "f'(x",
-        "2": "f'(x",
-        "3": "f'(x",
-        "4": "f'(x"
-      },
-      "answer": "1",
-      "solution": "To find the derivative of a polynomial function, we differentiate each term separately. The derivative of 3x^2 is 6x, the derivative of -4x is -4, and the derivative of a constant term 5 is 0. Therefore, the derivative of f(x) = 3x^2 - 4x + 5 is f'(x) = 6x - 4."
-    },
-    {
-      "number": "1729346716149",
-      "ai": true,
-      "type": "choice",
-      "question": "Question: What is the derivative of the function f(x) = 3x^2 - 4x + 5 with respect to x?",
-      "choices": {
-        "1": "f'(x",
-        "2": "f'(x",
-        "3": "f'(x",
-        "4": "f'(x"
-      },
-      "answer": "1",
-      "solution": "To find the derivative of a polynomial function, you apply the power rule. For each term, you multiply the coefficient by the exponent, then decrease the exponent by 1. Therefore, the derivative of f(x) = 3x^2 - 4x + 5 is f'(x) = 6x - 4."
-    },
-    {
       "number": "1729346757140",
       "ai": true,
       "type": "choice",
@@ -178,116 +136,18 @@
       "solution": "The derivative of f(x) = ax^n is f'(x) = n * ax^(n-1). Therefore, the derivative of f(x) = 3x^2 - 2x + 4 is f'(x) = 6x - 2."
     },
     {
-      "number": "1729346925164",
+      "number": "1729365034428",
       "ai": true,
       "type": "choice",
-      "question": "Question: What is the derivative of the function f(x) = 3x^2 + 4x - 2?",
+      "question": "Question: What is the derivative of f(x) = 3x^2 + 4x - 2 with respect to x?",
       "choices": {
-        "1": "f'(x",
-        "2": "f'(x",
-        "3": "f'(x",
-        "4": "f'(x"
+        "1": "6x + 4",
+        "2": "6x - 4",
+        "3": "3x^2 + 4",
+        "4": "6x + 4x"
       },
       "answer": "1",
-      "solution": "To find the derivative of a polynomial function, we apply the power rule, which states that the derivative of x^n is n*x^(n-1). Taking the derivative of each term in f(x) = 3x^2 + 4x - 2, we get f'(x) = 6x + 4."
-    },
-    {
-      "number": "1729346976156",
-      "ai": true,
-      "type": "choice",
-      "question": "Question: What is the derivative of the function f(x) = 3x^2 - 4x + 1 with respect to x?",
-      "choices": {
-        "1": "f'(x",
-        "2": "f'(x",
-        "3": "f'(x",
-        "4": "f'(x"
-      },
-      "answer": "1",
-      "solution": "To find the derivative of a function, we apply the power rule, which states that the derivative of x^n is n*x^(n-1). Taking the derivative of each term in f(x) = 3x^2 - 4x + 1, we get f'(x) = 6x - 4."
-    },
-    {
-      "number": "1729347355407",
-      "ai": true,
-      "type": "choice",
-      "question": "Question: What is the derivative of the function f(x) = 3x^2 - 2x + 5 with respect to x?",
-      "choices": {
-        "1": "f'(x",
-        "2": "f'(x",
-        "3": "f'(x",
-        "4": "f'(x"
-      },
-      "answer": "1",
-      "solution": "To find the derivative of f(x), we differentiate each term separately. The derivative of 3x^2 is 6x, the derivative of -2x is -2, and the derivative of a constant term (5) is 0. Therefore, f'(x) = 6x - 2."
-    },
-    {
-      "number": "1729354011776",
-      "ai": true,
-      "type": "choice",
-      "question": "Question: What is the derivative of the function f(x) = 3x^2 - 4x + 1?",
-      "choices": {
-        "1": "f'(x",
-        "2": "f'(x",
-        "3": "f'(x",
-        "4": "f'(x"
-      },
-      "answer": "1",
-      "solution": "To find the derivative of a polynomial function, you differentiate each term separately. The derivative of 3x^2 is 6x, the derivative of -4x is -4, and the derivative of a constant term 1 is 0. Therefore, the derivative of f(x) = 3x^2 - 4x + 1 is f'(x) = 6x - 4."
-    },
-    {
-      "number": "1729356955368",
-      "ai": true,
-      "type": "choice",
-      "question": "Question: What is the derivative of f(x) = 3x^2 + 4x - 2?",
-      "choices": {
-        "1": "f'(x",
-        "2": "f'(x",
-        "3": "f'(x",
-        "4": "f'(x"
-      },
-      "answer": "1",
-      "solution": "To find the derivative of a function, apply the power rule which states that the derivative of x^n is n*x^(n-1). Therefore, the derivative of f(x) = 3x^2 + 4x - 2 is f'(x) = 6x + 4."
-    },
-    {
-      "number": "1729363956192",
-      "ai": true,
-      "type": "choice",
-      "question": "Question: What is the derivative of f(x) = 3x^2 + 4x - 1 with respect to x?",
-      "choices": {
-        "1": "f'(x",
-        "2": "f'(x",
-        "3": "f'(x",
-        "4": "f'(x"
-      },
-      "answer": "1",
-      "solution": "To find the derivative of a function, we apply the power rule which states that the derivative of x^n is nx^(n-1). Taking the derivative of each term in f(x) = 3x^2 + 4x - 1 gives f'(x) = 6x + 4."
-    },
-    {
-      "number": "1729364554425",
-      "ai": true,
-      "type": "choice",
-      "question": "Question: What is the derivative of the function f(x) = 3x^2 + 4x - 2?",
-      "choices": {
-        "1": "f'(x",
-        "2": "f'(x",
-        "3": "f'(x",
-        "4": "f'(x"
-      },
-      "answer": "1",
-      "solution": "To find the derivative of a function, we apply the power rule. For f(x) = ax^n, the derivative is f'(x) = n * ax^(n-1). In this case, f'(x) = 6 * 3x^(2-1) + 4 * 1x^(1-1) - 0 = 6x + 4."
-    },
-    {
-      "number": "1729364651005",
-      "ai": true,
-      "type": "choice",
-      "question": "Question: Which of the following represents the derivative of the function f(x) = 3x^2 - 4x + 2 with respect to x?",
-      "choices": {
-        "1": "f'(x",
-        "2": "f'(x",
-        "3": "f'(x",
-        "4": "f'(x"
-      },
-      "answer": "1",
-      "solution": "To find the derivative of a function, we apply the power rule which states that the derivative of x^n is n*x^(n-1). Therefore, the derivative of 3x^2 is 2*3x^(2-1) = 6x. Similarly, the derivative of -4x is -4. The derivative of a constant term (like 2) is 0. So, putting it all together, the derivative of f(x) = 3x^2 - 4x + 2 is f'(x) = 6x - 4."
+      "solution": "To find the derivative of a function, you differentiate each term separately. The derivative of 3x^2 is 6x, the derivative of 4x is 4, and the derivative of -2 is 0. Therefore, the derivative of f(x) = 3x^2 + 4x - 2 is 6x + 4."
     }
   ]
 }

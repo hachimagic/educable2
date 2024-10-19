@@ -10,12 +10,16 @@ const Header: React.FC<{ onRefresh: () => void }> = ({ onRefresh }) => {
 		navigate('/profile');
 	};
 
+	const handleLogoClick = () => {
+		navigate('/');
+	};
+
 	return (
 		<>
 			<div className="w-full flex justify-between items-center px-6 pt-4">
 				<h1
 					className="text-[#0279D4] font-bold text-6xl cursor-pointer"
-					onClick={onRefresh}
+					onClick={handleLogoClick}
 				>
 					<span className="drop-shadow-sm">Educable</span>
 				</h1>
@@ -35,7 +39,7 @@ const Header: React.FC<{ onRefresh: () => void }> = ({ onRefresh }) => {
 					</div>
 				</div>
 			</div>
-			<div><hr className='border-[#B9B9B9] w-full mt-6'/></div>
+			<div><hr className="border-[#B9B9B9] w-full mt-6"/></div>
 		</>
 	);
 };

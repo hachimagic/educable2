@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import Card from "../../components/Card";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
+import "./stylesheets/App.css"; // Assuming this has necessary styles
 
 function Quiz() {
   const [searchParams] = useSearchParams();
@@ -15,6 +16,7 @@ function Quiz() {
   const [answerStatuses, setAnswerStatuses] = useState<string[]>([]);
   const questionRefs = useRef<Array<HTMLDivElement | null>>([]);
   const [aiQuestions, setAIQuestions] = useState<any[]>([]);
+  const [feedbackMessages, setFeedbackMessages] = useState<string[]>([]);
 
   useEffect(() => {
     fetchData();
@@ -38,6 +40,7 @@ function Quiz() {
       questionRefs.current = new Array(nonAIChoices.length).fill(null);
 
       setAnswerStatuses(new Array(nonAIChoices.length).fill("pending"));
+      setFeedbackMessages(new Array(nonAIChoices.length).fill(""));
       setLoading(false);
     } catch (err: any) {
       console.error("Error fetching quiz data:", err);
@@ -53,10 +56,14 @@ function Quiz() {
       newStatuses[index] = status;
       return newStatuses;
     });
-    const explanation = status === "correct"
-      ? `Correct! The correct answer is: ${correctAnswer}.`
-      : `Wrong! The correct answer is: ${correctAnswer}.`;
-    alert(`Question ${index + 1}: ${explanation}`);
+
+    setFeedbackMessages(prevMessages => {
+      const newMessages = [...prevMessages];
+      newMessages[index] = status === "correct"
+        ? `Correct! The correct answer is: ${correctAnswer}.`
+        : `Wrong! The correct answer is: ${correctAnswer}.`;
+      return newMessages;
+    });
   };
 
   const onParallelize = async (index: number) => {
@@ -74,7 +81,14 @@ function Quiz() {
       if (!response.ok) throw new Error('Failed to generate question');
 
       const newQuestion = await response.json();
-      setAIQuestions(prev => [...prev, newQuestion]);
+      console.log("New Question Data:", newQuestion);
+
+      setAIQuestions(prev => {
+        const updatedAIQuestions = [...prev];
+        updatedAIQuestions[index] = newQuestion;
+        return updatedAIQuestions;
+      });
+
       setParallelQuestions(prev => [...prev, `Parallel Question ${index + 1}`]);
     } catch (err: any) {
       console.error('Error generating similar question:', err);
@@ -91,11 +105,12 @@ function Quiz() {
   };
 
   return (
-    <div className="flex flex-col mx-20 my-4 font-default">
-      <div style={{ position: "fixed", top: 0, left: 0, width: "100%", zIndex: 10, backgroundColor: "white" }}>
+    <div className="flex flex-col mx-20 my-4 bg-[#EEEEEE] font-default">
+      {/* Ensure similar styling class is applied */}
+      <div className="header-wrapper">
         <Header onRefresh={() => window.location.reload()} />
       </div>
-      <div style={{ paddingTop: "100px" }}>
+      <div>
         <h1 className="text-[#0279D4] font-bold text-6xl">{title}</h1>
         <div className="mt-3 pl-6">
           <h2 className="text-2xl text-[#8A8A8A]">{description}</h2>
@@ -104,10 +119,7 @@ function Quiz() {
           <div className="w-3/4 pr-4">
             {loading ? (
               <div className="flex justify-center items-center h-[75vh]">
-                <div
-                  className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full"
-                  role="status"
-                >
+                <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
                   <span className="visually-hidden">Loading...</span>
                 </div>
               </div>
@@ -123,9 +135,10 @@ function Quiz() {
                       callback={submittedAnswer => onSubmit(submittedAnswer, choice.answer, index)}
                       onParallelize={() => onParallelize(index)}
                     />
-                    {parallelQuestions.includes(`Parallel Question ${index + 1}`) && (
-                      <div className="mt-6"> {/* Add space here using margin-top */}
-                        <Card 
+                    <div className="text-sm text-gray-600 mt-2">{feedbackMessages[index]}</div>
+                    {parallelQuestions.includes(`Parallel Question ${index + 1}`) && aiQuestions[index] && (
+                      <div className="mt-6 parallelized-card" key={`ai-${index}`}>
+                        <Card
                           question={aiQuestions[index]?.question}
                           choices={Object.values(aiQuestions[index]?.choices || {})}
                           choiceIndices={Object.keys(aiQuestions[index]?.choices || {})}

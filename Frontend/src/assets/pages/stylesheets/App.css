@@ -3,3 +3,22 @@
   box-sizing: border-box;
   padding: 0;
 }
+
+/* Add this to your existing CSS file */
+.parallelized-card {
+  margin-left: 20px; /* Adjust the value to your preference */
+}
+
+/* stylesheets/App.css or a specific styles file for your components */
+.header-global-class {
+  background-color: inherit; /* Or specify a common color */
+  /* Add any additional styling needed */
+}
+
+/* stylesheets/App.css */
+.header-wrapper {
+  background-color: #EEEEEE; /* Adjust to the same gray used in Dashboard */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
